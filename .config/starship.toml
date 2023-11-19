@@ -1,0 +1,130 @@
+# ~/.config/starship.toml
+
+command_timeout = 1000
+format = '$battery$os$username$hostname$kubernetes$python$directory$git_branch$git_status$time$cmd_duration$character'
+
+[azure]
+disabled = false
+format = 'on [$symbol($subscription)]($style) '
+symbol = '󰠅 '
+style = 'blue bold'
+
+[azure.subscription_aliases]
+very-long-subscription-dev = 'dll-dev'
+very-long-subscription-qa = 'dll-qa'
+very-long-subscription-prd = 'dll-prod'
+
+[line_break]
+disabled = true
+
+[[battery.display]]
+threshold = 20
+style = 'bold red'
+
+# OS
+[os]
+disabled = false
+format = '[$symbol](bold white) '   
+
+
+[os.symbols]
+Windows = ' '
+Ubuntu = ''
+Macos = '󰀵'
+
+# Shows the username
+[username]
+disabled = false
+format = '[$user]($style) '
+style_user = 'white bold'
+style_root = 'black bold'
+show_always = true
+
+# Shows the hostname
+[hostname]
+format = 'on [$ssh_symbol$hostname](bold yellow) '
+disabled = false
+ssh_only = false
+
+# Shows current directory
+[directory]
+truncation_symbol = '~/'
+home_symbol = '󰋜 ~'
+read_only_style = '197'
+read_only = '  '
+format = 'at [$path]($style)[$read_only]($read_only_style)'
+
+# Shows current git branch
+[git_branch]
+symbol = '  '
+style = 'bold green'
+format = ' on [$symbol$branch ]($style) '
+
+# Shows current git status
+[git_status]
+format = '[$all_status$ahead_behind]($style)'
+style = 'bold green'
+conflicted = '🏳 '
+up_to_date = ''
+untracked = ' '
+ahead = '⇡${count} '
+diverged = '⇕⇡${ahead_count}⇣${behind_count} '
+behind = '⇣${count} '
+stashed = ' '
+modified = ' '
+staged = '[++\($count\)](green) '
+renamed = '襁 '
+deleted = ' '
+
+# Shows current time
+[time]
+disabled = false
+format = '[ 🕙 $time ]($style) '
+style = 'bold purple'
+use_12hr = false
+utc_time_offset = '+1'
+
+# Shows character based on error code
+[character]
+success_symbol = '[➜](bold green) '
+error_symbol = '[✗](bold red) '
+
+# Shows command duration
+[cmd_duration]
+format = 'took [$duration](bold yellow) '
+min_time = 500
+
+# Shows py and venv
+[python]
+format = 'via [${symbol}()(\($virtualenv\) )]($style)'
+python_binary = ['./venv/bin/python', './.venv/bin/python', 'python', 'python3', 'python2']
+style = 'blue bold'
+
+[terraform]
+disabled = false
+
+[kubernetes]
+format = 'via [󱃾 $context\($namespace\)](bold purple) '
+disabled = false
+
+
+[git_commit]
+disabled = true
+
+[package]
+disabled = true
+
+[vagrant]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[helm]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[ruby]
+disabled = true
