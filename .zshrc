@@ -35,10 +35,8 @@ zinit cdreplay -q
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Keybindings
-bindkey -e
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey '^[w' kill-region
+bindkey "^[[1;5C" forward-word                  # Key Ctrl + Right
+bindkey "^[[1;5D" backward-word                 # Key Ctrl + Left
 
 # History
 HISTSIZE=1000000
@@ -62,10 +60,10 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 
 # Shell integrations
-eval "$(fzf --zsh)"
+source <(fzf --zsh)
 
 # Load Zoxide
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --no-aliases)"
 
 # Aliases
 [[ -f ~/.config/zsh/aliases.zsh ]] && source ~/.config/zsh/aliases.zsh
@@ -75,3 +73,9 @@ eval "$(zoxide init zsh)"
 
 # PyEnv
 eval "$(pyenv init -)"
+
+# # WSL GUI
+# export LIBGL_ALWAYS_INDIRECT=1
+
+# # Flux
+# . <(flux completion zsh)
