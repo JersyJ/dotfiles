@@ -70,10 +70,10 @@ source <(fzf --zsh)
 eval "$(zoxide init zsh --no-aliases)"
 
 # Aliases
-[[ -f ~/.config/zsh/aliases.zsh ]] && source ~/.config/zsh/aliases.zsh
+[[ -f ~/.dotfiles/.config/zsh/aliases.zsh ]] && source ~/.dotfiles/.config/zsh/aliases.zsh
 
 # Exports
-[[ -f ~/.config/zsh/exports.zsh ]] && source ~/.config/zsh/exports.zsh
+[[ -f ~/.dotfiles/.config/zsh/exports.zsh ]] && source ~/.dotfiles/.config/zsh/exports.zsh
 
 # SSH-agent (WSL-specific)
 ssh_pid=$(pidof ssh-agent)
