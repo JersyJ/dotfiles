@@ -26,6 +26,9 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
+# Add in snippet
+zinit snippet OMZP::sudo
+
 # Load completions
 autoload -U compinit && compinit
 
@@ -37,6 +40,7 @@ zinit cdreplay -q
 # Keybindings
 bindkey "^[[1;5C" forward-word                  # Key Ctrl + Right
 bindkey "^[[1;5D" backward-word                 # Key Ctrl + Left
+bindkey "^[[3~" delete-char                     # Key Delete  
 
 # History
 HISTSIZE=1000000
@@ -71,11 +75,20 @@ eval "$(zoxide init zsh --no-aliases)"
 # Exports
 [[ -f ~/.config/zsh/exports.zsh ]] && source ~/.config/zsh/exports.zsh
 
-# PyEnv
-eval "$(pyenv init -)"
+# SSH-agent (WSL-specific)
+ssh_pid=$(pidof ssh-agent)
 
-# # WSL GUI
-# export LIBGL_ALWAYS_INDIRECT=1
+# If the agent is not running, start it, and save the environment to a file
+if [ "$ssh_pid" = "" ]; then
+        ssh_env="$(ssh-agent -s)"
+        echo "$ssh_env" | head -n 2 | tee ~/.ssh/agent.env > /dev/null
+fi
+
+# Load the environment from the file
+if [ -f ~/.ssh/agent.env ]; then
+        eval "$(cat ~/.ssh/agent.env)"
+fi
+
 
 # # Flux
 # . <(flux completion zsh)
